@@ -29,6 +29,12 @@ inv-cancel-l a p =
 ------------------------------------------------------------------------
 -- Hedberg-style: a reflexive prop-valued relation that detects identity
 -- makes a type a set.
+--
+-- This reflexive-mere-relation formulation is the generalization of
+-- Hedberg's theorem (whose original statement assumed decidable equality)
+-- from N. Kraus, M. Escardó, T. Coquand and T. Altenkirch,
+-- "Generalizations of Hedberg's Theorem" (TLCA 2013); it appears as
+-- Theorem 7.2.2 in the HoTT book.
 ------------------------------------------------------------------------
 
 hedberg-set : {X : Type 𝓤} (R : X → X → Type 𝓥)

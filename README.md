@@ -22,8 +22,8 @@ pushout property along the `Δⁿ × 𝕀` retraction (`S-step`).
 
 ## Building
 
-The entry point is `Pushout.agda`; type-checking it checks the whole
-development:
+The repository is an Agda library (`lemma26.agda-lib`, source root `.`). The
+entry point is `Pushout.agda`; type-checking it checks the whole development:
 
 ```sh
 agda Pushout.agda
@@ -51,9 +51,15 @@ There are **no** proof-debt postulates: in particular the base case
 
 ## Layout
 
-All proof modules live at the top level. The dependency root is `Pushout.agda`;
-notable layers include `Posetal*`/`FunIPosetal` (posetal structure of the
-simplices), `Square`/`SquareAlg`/`SquareGeom` (abstract pushout-square algebra
-and the concrete gluing square `Sq`), `Cone*`/`TimesI` (cone reshuffling and the
-`× 𝕀` preservation step), and `GroupoidSolver`/`CayleyAssoc` (path-algebra
-solvers used to discharge coherence goals).
+`Pushout.agda` (the entry point with the main theorem) sits at the root; the 45
+supporting modules are grouped into layer subdirectories:
+
+| Directory       | Contents |
+|-----------------|----------|
+| `Foundations/`  | HoTT base: `Spartan` (funext, univalence), `HLevels`, `SigmaEquiv`, `Retracts`, `Coherence`. |
+| `Category/`     | Ambient category & exponentials: `CatAxioms`, `HigherCat`, `Constructions`, `Pullbacks`, `Exponentials`, `ExpEval`, `UnitIso`, `Product`. |
+| `Solvers/`      | Path-algebra automation: `GroupoidSolver`, `CayleyAssoc`, `Normaliser`, `PastingDSL`, `PastingTest`. |
+| `Interval/`     | The interval `𝕀`, order combinatorics and faces: `Interval`, `IntervalPosetal`, `OrdCompare`, `OrdComb`, `FaceOrd`, `FaceOrdCompat`. |
+| `Posetal/`      | Posetal structure of the simplices: `PosetalCore`, `FunIPosetal`, `Posetal`. |
+| `Simplices/`    | Simplices and the Segal axiom: `Segal`, `SegalGeom`, `FaceMap`, `FaceTop`, `FaceTopProof`, `LastEdge`, `SimplexRetract`, `SimplexRetractValues`. |
+| `Squares/`      | Pushout-square algebra and the gluing square: `Square`, `SquareAlg`, `SquareGeom`, `ConeUnit`, `ConeComp`, `ConeNat`, `TimesI`, `PushoutBase`, `PushoutDef`, `PushoutProof`. |

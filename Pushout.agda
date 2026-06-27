@@ -14,24 +14,24 @@
 
 module Pushout where
 
-open import Spartan
-open import CatAxioms
-open import Coherence
-open import Constructions using (equiv-inv)
-open import HigherCat using (𝕀)
-open import Pullbacks using (_×c_; equiv-inv-rinv; equiv-inv-linv;
+open import Foundations.Spartan
+open import Category.CatAxioms
+open import Foundations.Coherence
+open import Category.Constructions using (equiv-inv)
+open import Category.HigherCat using (𝕀)
+open import Category.Pullbacks using (_×c_; equiv-inv-rinv; equiv-inv-linv;
                             prod-comparison)
-open import Product using (product-map; pmc; product-map-eq1; prod-comp-equiv)
-open import Posetal using (is-posetal; posetal-hom-is-set; Delta-posetal; I-posetal)
-open import HLevels using (equiv-is-set)
-open import Interval using (Δ)
-open import SquareAlg
-open import ConeUnit using (sq-cone-pre-id)
-open import ConeComp using (sq-cone-pre-comp)
-open import ConeNat  using (sq-comparison-natural)
-open import TimesI   using (times-I-preserves)
-open import SquareGeom using (Sq; retract-SSk)
-open import SegalGeom using (base-Sq1)
+open import Category.Product using (product-map; pmc; product-map-eq1; prod-comp-equiv)
+open import Posetal.Posetal using (is-posetal; posetal-hom-is-set; Delta-posetal; I-posetal)
+open import Foundations.HLevels using (equiv-is-set)
+open import Interval.Interval using (Δ)
+open import Squares.SquareAlg
+open import Squares.ConeUnit using (sq-cone-pre-id)
+open import Squares.ConeComp using (sq-cone-pre-comp)
+open import Squares.ConeNat  using (sq-comparison-natural)
+open import Squares.TimesI   using (times-I-preserves)
+open import Squares.SquareGeom using (Sq; retract-SSk)
+open import Simplices.SegalGeom using (base-Sq1)
 
 ------------------------------------------------------------------------
 -- §6  retract collapses to identity; the cone-level retract.

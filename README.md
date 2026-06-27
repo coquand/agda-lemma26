@@ -20,6 +20,12 @@ in `Pushout.agda`, proved by induction on `n`: a base case `Sq (suc zero)`
 (derived from the Segal/Rezk axiom) and an inductive step that transports the
 pushout property along the `Δⁿ × 𝕀` retraction (`S-step`).
 
+## Context
+
+This formalization is part of the axiom system for higher categories of
+**Christian Sattler** and **David Wärn**, inspired by the work of the group of
+**Denis-Charles Cisinski**.
+
 ## Building
 
 The repository is an Agda library (`lemma26.agda-lib`, source root `.`). The

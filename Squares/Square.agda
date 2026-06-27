@@ -49,9 +49,10 @@ is-pushout-square S = (X : Cat) → is-equiv (sq-comparison S X)
 
 -- NOTE: this records only that the four faces commute on the nose; it omits the
 -- coherence cell relating these four 2-cells to sqcomm P / sqcomm Q, so it is NOT
--- the correct notion of square morphism in general.  It suffices here because every
--- corner is posetal (thin / is-set homs), so any two such 2-cells are equal and the
--- missing coherence holds automatically.
+-- the correct notion of square morphism in general.  It suffices here only because
+-- the squares this is actually applied to (the gluing squares `Sq n`) have posetal
+-- corners (thin / is-set homs) — so any two such 2-cells are equal and the missing
+-- coherence holds automatically.  This would NOT be sound for arbitrary corners.
 record square-morphism (P Q : Square) : Type 𝓤₀ where
   constructor mk-square-morphism
   field

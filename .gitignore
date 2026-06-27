@@ -1,0 +1,8 @@
+# Whitelist policy: track only Agda sources + the README.
+# Everything else (build artefacts, OLD/, unused/, PDFs, handoff notes,
+# editor backups, .DS_Store, .claude/) stays local and untracked.
+*
+
+!.gitignore
+!*.agda
+!README.md

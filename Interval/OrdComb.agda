@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26, STREAM A — the finite-ordinal combinatorics layer (handoff §1).
+-- Lemma 26, GEOMETRIC LAYER — the finite-ordinal combinatorics layer (handoff §1).
 --
 -- Pure combinatorics on `Ord` (no `Cat`), reusable and fast.  Mirrors the
 -- Rocq `Sn2_to_SSn` / `Sn2_to_SSn_inv` retraction `⟦S(S n)⟧ ≅ ⟦S n⟧ × ⟦2⟧`

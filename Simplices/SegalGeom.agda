@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26, STREAM A — the Segal axiom in geometric form, and base-Sq1.
+-- Lemma 26, GEOMETRIC LAYER — the Segal axiom in geometric form, and base-Sq1.
 --
 -- axioms.pdf Axiom 21 states the Segal axiom AS a pushout square: Δ² is the
 -- pushout of  I ← 1 → I  glued at a vertex, with the CONCRETE coface maps

@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — STREAM B base: the structural algebra of square morphisms
+-- Lemma 26 — PUSHOUT-ALGEBRA LAYER base: the structural algebra of square morphisms
 -- and cones (Rocq Main.v 4180–4540, the parts with no genuine pentagon
 -- content).  The three pentagon-heavy cores live in ConeUnit / ConeComp /
 -- ConeNat; the assembly lives in Pushout.  comp f g = f ∘ g.

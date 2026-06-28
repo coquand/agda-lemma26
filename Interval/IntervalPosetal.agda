@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- 𝕀-specific geometry for the posetal development (Stream A, Lemma 26).
+-- 𝕀-specific geometry for the posetal development (the geometric layer, Lemma 26).
 --
 -- These are the facts about the walking arrow 𝕀 that feed `I-posetal`
 -- (Posetal.agda) but do NOT mention the posetal predicate / object-action

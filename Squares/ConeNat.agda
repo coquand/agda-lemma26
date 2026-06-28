@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — STREAM B: NATURALITY of the comparison map w.r.t. square
+-- Lemma 26 — PUSHOUT-ALGEBRA LAYER: NATURALITY of the comparison map w.r.t. square
 -- morphisms (Rocq `sq_comparison_natural`, Main.v 4600, "the cube":
 -- reduces via shape1/shape2/pentL to `cube_corner`, discharged by the
 -- isaset corner hypothesis).

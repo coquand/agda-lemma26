@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26, STREAM A — the vertex-value bridge (handoff §2).
+-- Lemma 26, GEOMETRIC LAYER — the vertex-value bridge (handoff §2).
 --
 -- Connects the geometric maps `sect`/`pre-face-n`/`eval-at-top` to their
 -- object (vertex) actions, expressed through `construction-20`

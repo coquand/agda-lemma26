@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- h-level helpers for the posetal development (Stream A, Lemma 26).
+-- h-level helpers for the posetal development (the geometric layer, Lemma 26).
 --
 -- The workhorse is `hedberg-set`: a type carrying a reflexive,
 -- prop-valued relation that implies identity is a set.  Everything

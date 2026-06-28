@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26, STREAM A — the concrete simplex square and its retract.
+-- Lemma 26, GEOMETRIC LAYER — the concrete simplex square and its retract.
 --
 -- Builds the gluing square `Sq n` (Rocq `Sq`, Main.v 4689) out of the
 -- already-existing geometry (`top`, `face`, `last-edge`, `eval-pt`), and
@@ -17,8 +17,8 @@
 -- corners, with the eight square-morphism commutations and four retract
 -- laws being equations of maps into the posetal simplices (so each is a
 -- `posetal-eq-objects` / terminal-uniqueness obligation).  They are stated
--- here against the committed `Square` interface so Stream B can build on
--- them; discharging them is the remaining Stream-A geometry task.
+-- here against the committed `Square` interface so the pushout-algebra layer can build on
+-- them; discharging them is the remaining geometric-layer task.
 ------------------------------------------------------------------------
 
 module Squares.SquareGeom where
@@ -81,7 +81,7 @@ Sq n = mk-square 𝟏c (Δ (suc zero)) (Δ n) (Δ (suc n))
          (square-commutes n)
 
 ------------------------------------------------------------------------
--- The two structural theorems (Stream-A geometry — stated for Stream B)
+-- The two structural theorems (geometric-layer constructions — stated for the pushout-algebra layer)
 ------------------------------------------------------------------------
 
 -- NB `base-Sq1 : is-pushout-square (Sq 1)` is DERIVED from the Segal axiom

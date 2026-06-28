@@ -1,9 +1,9 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — SHARED interface (Stream A ⇄ Stream B contract).
+-- Lemma 26 — SHARED interface (the geometric layer ⇄ the pushout-algebra layer contract).
 --
--- Stream A's four deliverables, all PROVED (postulate-free):
+-- the geometric layer's four deliverables, all PROVED (postulate-free):
 --   posetal-eq-objects, posetal-hom-is-set, I-posetal   (PosetalCore)
 --   Delta-posetal                                        (here, by induction:
 --       base Δ0 = 𝟏c is posetal; step Δ(suc n) = Fun (Δ n) 𝕀 via Fun-I-posetal)

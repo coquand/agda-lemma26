@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — STREAM B: the COMPOSITION law of the cone-pullback functor
+-- Lemma 26 — PUSHOUT-ALGEBRA LAYER: the COMPOSITION law of the cone-pullback functor
 -- (Rocq `sq_cone_pre_comp`, Main.v ~4500, the genuine pentagon use via
 -- `releg_comp`).
 ------------------------------------------------------------------------

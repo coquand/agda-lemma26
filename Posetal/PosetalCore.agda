@@ -1,19 +1,19 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — SHARED interface (Stream A ⇄ Stream B contract).
+-- Lemma 26 — SHARED interface (the geometric layer ⇄ the pushout-algebra layer contract).
 --
 -- Posetality of categories (Rocq `is_posetal`, HANDOFF §1).  `is-posetal`
 -- is the agreed definition (here strengthened with clause (3), `is-set (Ob C)`,
 -- matching Rocq's separate `isaset (Ob C)` hypothesis — see the note on the
--- definition below).  Stream A's four deliverables are PROVED here:
+-- definition below).  the geometric layer's four deliverables are PROVED here:
 --   posetal-eq-objects, posetal-hom-is-set, I-posetal  (postulate-free)
 --   Delta-posetal                                       (base + induction
 --       proved; rests on the single isolated `Fun-posetal`, the nerve
 --       universal property — see its postulate for what remains).
 --
 -- NB there is NO global `map-is-set` (the codebase is `map-is-set`-free), so
--- `posetal-hom-is-set` is the genuine source of Stream B's `is-set` hypotheses.
+-- `posetal-hom-is-set` is the genuine source of the pushout-algebra layer's `is-set` hypotheses.
 ------------------------------------------------------------------------
 
 module Posetal.PosetalCore where
@@ -77,7 +77,7 @@ is-monotone-ob-is-prop thin f =
   Π-is-prop (λ x → Π-is-prop (λ y → Π-is-prop (λ _ → thin (f x) (f y))))
 
 ------------------------------------------------------------------------
--- STREAM A deliverables — types fixed here, proofs below.
+-- GEOMETRIC LAYER deliverables — types fixed here, proofs below.
 ------------------------------------------------------------------------
 
 -- Rocq `posetal_eq_objects` (Main.v 3919): in a posetal target a functor is

@@ -1,12 +1,12 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — SHARED interface (Stream A ⇄ Stream B contract).
+-- Lemma 26 — SHARED interface (the geometric layer ⇄ the pushout-algebra layer contract).
 --
 -- The abstract pushout-square algebra (Rocq `square` route, Main.v 4180+).
--- Records + cone/comparison/is-pushout/times-I are the DATA both streams
--- agree on.  The two structural theorems are postulated here so Stream A can
--- build against them; Stream B replaces these postulates with proofs (see
+-- Records + cone/comparison/is-pushout/times-I are the DATA both layers
+-- agree on.  The two structural theorems are postulated here so the geometric layer can
+-- build against them; the pushout-algebra layer replaces these postulates with proofs (see
 -- HANDOFF-lemma26-pushout.md).  comp f g = f ∘ g throughout.
 ------------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ times-I S = mk-square (sqA S ×c 𝕀) (sqB S ×c 𝕀) (sqC S ×c 𝕀) (sqD S 
               (times-I-comm S)
 
 ------------------------------------------------------------------------
--- STREAM B deliverables `is-pushout-square-retract` (Rocq 4655) and
+-- PUSHOUT-ALGEBRA LAYER deliverables `is-pushout-square-retract` (Rocq 4655) and
 -- `times-I-preserves` (Rocq 6277) are now PROVED in Pushout.agda / TimesI.agda
 -- (the former postulate-free; the latter via the cone-reshuffle route).
 ------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26, STREAM A — `is-posetal (Fun X 𝕀)` (Rocq `monotone_curry_delta`).
+-- Lemma 26, GEOMETRIC LAYER — `is-posetal (Fun X 𝕀)` (Rocq `monotone_curry_delta`).
 --
 -- The object-action clause is proved by an explicit curry/uncurry
 -- equivalence between functions Ob D → Ob(Fun X 𝕀) and Ob(D ×c X) → Ob 𝕀

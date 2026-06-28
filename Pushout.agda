@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — STREAM B: assembly.
+-- Lemma 26 — PUSHOUT-ALGEBRA LAYER: assembly.
 --
 -- Port of the Rocq `square` route (~/Desktop/LUCIE/Main.v):
 --   retract of a pushout is a pushout (is_pushout_square_retract, 4655),
@@ -145,7 +145,7 @@ times-I-comm-proof S =
   ∙ pmc (sql S) (sqb S) (idMap 𝕀) (idMap 𝕀)
 
 ------------------------------------------------------------------------
--- §9  the geometric input from STREAM A (now PROVED, not postulated):
+-- §9  the input from the geometric layer (now PROVED, not postulated):
 --     `Sq`, `retract-SSk` (SquareGeom), `base-Sq1` (SegalGeom), and the
 --     posetalities of the corners (Delta-posetal / I-posetal, Posetal).
 --     Sq n = mk-square 𝟏c (Δ 1) (Δ n) (Δ (suc n)), so each corner is a
@@ -174,7 +174,7 @@ prod-hom-is-set {X} {A} {B} sA sB =
 
 ------------------------------------------------------------------------
 -- §10  the induction:  S(n+1) is a pushout for all n (Rocq `S_pushout`).
---      Stream-A's `Sq` / `retract-SSk` / `base-Sq1` are used DIRECTLY — no
+--      geometric-layer's `Sq` / `retract-SSk` / `base-Sq1` are used DIRECTLY — no
 --      re-stated signatures, so nothing already-checked is re-normalized.
 ------------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — STREAM B: the UNIT law of the cone-pullback functor
+-- Lemma 26 — PUSHOUT-ALGEBRA LAYER: the UNIT law of the cone-pullback functor
 -- (Rocq `sq_cone_pre_id`, Main.v 4461, via `unit_leg` = pentagon at Id).
 ------------------------------------------------------------------------
 

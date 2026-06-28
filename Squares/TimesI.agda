@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K --exact-split #-}
 
 ------------------------------------------------------------------------
--- Lemma 26 — STREAM B: − ×c 𝕀 PRESERVES PUSHOUTS
+-- Lemma 26 — PUSHOUT-ALGEBRA LAYER: − ×c 𝕀 PRESERVES PUSHOUTS
 -- (Rocq `times_I_preserves`, Main.v 6277).
 --
 -- MODULAR structure: the generic machinery (`equiv-from-homotopy`,

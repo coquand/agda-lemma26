@@ -13,6 +13,7 @@ open import Foundations.Spartan
 open import Category.CatAxioms
 open import Foundations.Coherence
 open import Category.Constructions using (equiv-inv)
+open import Category.Pullbacks using (equiv-inv-rinv; equiv-inv-linv)
 open import Interval.Interval using (invertible-to-equiv)
 open import Squares.Square public
 
@@ -54,6 +55,48 @@ retract-of-equiv s₀ s₁ r₀ r₁ ret₀ ret₁ f s₁f fr₀ =
     ( (λ b₁ → r₀ (s₁ b₁))
     , (λ b₁ → fr₀ (s₁ b₁) ∙ ret₁ b₁)
     , (λ b₀ → ap r₀ (s₁f b₀) ∙ ret₀ b₀) )
+
+------------------------------------------------------------------------
+-- §1'  alternative packaging: the textbook "retract of a MAP" lemma
+--      (arrow-category form).  f is a retract of an equivalence g —
+--
+--          A₀ ──f──▶ A₁          i₀,i₁ the sections (into the g-row),
+--        i₀│ ▲p₀  i₁│ ▲p₁        p₀,p₁ the retractions, pᵢ∘iᵢ = id,
+--          ▼ │       ▼ │         g∘i₀ = i₁∘f and f∘p₀ = p₁∘g,
+--          B₀ ──g──▶ B₁          g an equivalence
+--
+--      ⟹ f is an equivalence, with inverse f⁻¹ = p₀ ∘ g⁻¹ ∘ i₁.
+--
+--      Unlike `retract-of-equiv` (a port of Rocq `isweq_by_retracts`,
+--      which uses a single shared reference object A = B₁ and folds g⁻¹
+--      into r₀), here g is kept as an explicit equivalence argument and
+--      inverted inside, with DISTINCT middle objects A₁ ≠ B₁.  The two
+--      give the same conclusion; this is the diagram one first expects
+--      for "a retract of a pushout is a pushout".
+------------------------------------------------------------------------
+
+retract-of-equiv-arrow :
+  {A₀ A₁ B₀ B₁ : Type 𝓤}
+  (f : A₀ → A₁) (g : B₀ → B₁)
+  (i₀ : A₀ → B₀) (p₀ : B₀ → A₀) (pi₀ : (a : A₀) → p₀ (i₀ a) ≡ a)
+  (i₁ : A₁ → B₁) (p₁ : B₁ → A₁) (pi₁ : (a : A₁) → p₁ (i₁ a) ≡ a)
+  (sq-i : (a : A₀) → g (i₀ a) ≡ i₁ (f a))    -- g ∘ i₀ = i₁ ∘ f
+  (sq-p : (b : B₀) → f (p₀ b) ≡ p₁ (g b))    -- f ∘ p₀ = p₁ ∘ g
+  (ge : is-equiv g)
+  → is-equiv f
+retract-of-equiv-arrow f g i₀ p₀ pi₀ i₁ p₁ pi₁ sq-i sq-p ge =
+  invertible-to-equiv f
+    ( finv
+    , (λ a₁ → sq-p (gi (i₁ a₁)) ∙ ap p₁ (equiv-inv-rinv e (i₁ a₁)) ∙ pi₁ a₁)
+    , (λ a₀ → ap (λ z → p₀ (gi z)) ((sq-i a₀) ⁻¹)
+              ∙ ap p₀ (equiv-inv-linv e (i₀ a₀)) ∙ pi₀ a₀) )
+  where
+    e : _ ≃ _
+    e = g , ge
+    gi : _
+    gi = equiv-inv e
+    finv : _
+    finv a₁ = p₀ (gi (i₁ a₁))
 
 ------------------------------------------------------------------------
 -- §2  cone accessors and `cone-eq` (Rocq `cone_eq`, 4209)

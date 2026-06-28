@@ -101,6 +101,37 @@ is-pushout-square-retract {S'} {S} R HAB HAC HBD HCD HrD HsD HS X =
       ∙ ap (sq-cone-pre (sr-s R) X) (equiv-inv-rinv e a)
 
 ------------------------------------------------------------------------
+-- §7'  ALTERNATIVE PROOF of the same statement, via the textbook
+--      "retract of a MAP" lemma `retract-of-equiv-arrow` (SquareAlg §1').
+--      Here the comparison map of S' is a retract of the comparison map
+--      of S in the arrow category — TWO parallel maps with distinct
+--      middle objects sq-cone S' X and sq-cone S X — and the pushout
+--      equivalence `HS X` is supplied as g's equivalence, its inverse
+--      built into f⁻¹ rather than absorbed into a single reference type.
+--      The four obligations are literally the same lemmas as §7.
+------------------------------------------------------------------------
+
+is-pushout-square-retract-arrow :
+  {S' S : Square} (R : square-retract S' S)
+  (HAB : is-set (Map (sqA S') (sqB S'))) (HAC : is-set (Map (sqA S') (sqC S')))
+  (HBD : is-set (Map (sqB S') (sqD S'))) (HCD : is-set (Map (sqC S') (sqD S')))
+  (HrD : is-set (Map (sqA S) (sqD S'))) (HsD : is-set (Map (sqA S') (sqD S)))
+  → is-pushout-square S → is-pushout-square S'
+is-pushout-square-retract-arrow {S'} {S} R HAB HAC HBD HCD HrD HsD HS X =
+  retract-of-equiv-arrow
+    (sq-comparison S' X)                         -- f  : Map(D',X) → cone S'
+    (sq-comparison S  X)                         -- g  : Map(D ,X) → cone S
+    (sq-apex-pre (sr-r R) X)                     -- i₀ : Map(D',X) → Map(D,X)
+    (sq-apex-pre (sr-s R) X)                     -- p₀ : Map(D,X)  → Map(D',X)
+    (λ h → composeA h (smD (sr-r R)) (smD (sr-s R)) ∙ ccr h (sr-D R) ∙ comp-id-r h)
+    (sq-cone-pre (sr-r R) X)                     -- i₁ : cone S' → cone S
+    (sq-cone-pre (sr-s R) X)                     -- p₁ : cone S  → cone S'
+    (sq-cone-pre-retract R HAB HAC HBD HCD X)    -- p₁ ∘ i₁ = id
+    (sq-comparison-natural (sr-r R) X HrD)       -- g ∘ i₀ = i₁ ∘ f
+    (sq-comparison-natural (sr-s R) X HsD)       -- f ∘ p₀ = p₁ ∘ g
+    (HS X)                                       -- g is an equivalence
+
+------------------------------------------------------------------------
 -- §8  the commutation of `times-I S` from `pmc` (functoriality of
 --     product-map); this is the real proof of Square's `times-I-comm`.
 ------------------------------------------------------------------------

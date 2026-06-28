@@ -9,21 +9,85 @@ open import Category.Constructions
 open import Category.Pullbacks
 open import Category.Exponentials
 open import Interval.Interval
+open import Category.UnitIso using (eval-pt)
 
 ------------------------------------------------------------------------
--- Part 1: The coface maps of Δ 2
+-- Part 1: The coface maps of Δ 2  (DEFINED, not postulated)
 --
--- The three edges of Δ 2 as morphisms (functors 𝕀 → Δ 2)
--- with endpoint identifications.
+-- Δ 2 = Fun (Δ 1) 𝕀, so an edge of Δ² is a morphism in Fun(Δ¹,𝕀), and
+-- `pointwise-to-mor` (Interval) turns a pointwise ≤ between two functors
+-- Δ¹ → 𝕀 into exactly such a morphism — this is where "𝕀 is posetal" is
+-- used.  The three vertices of Δ² are the maps Δ¹ → 𝕀:
+--
+--   v₀ = const 𝕀₀   (vertex 0)
+--   v₁ = eval-pt    (the Δ¹ ≅ 𝕀 iso — vertex 1)
+--   v₂ = const 𝕀₁   (vertex 2)
+--
+-- and d₀₁ : 0→1, d₁₂ : 1→2, d₀₂ : 0→2 are the induced edges.  Since v₀
+-- is constantly 0 and v₂ constantly 1, every required pointwise bound is
+-- immediate (0 ≤ anything ≤ 1), independent of v₁.
 ------------------------------------------------------------------------
 
-postulate
-  d₀₁ : Mor (Δ (suc (suc zero)))
-  d₁₂ : Mor (Δ (suc (suc zero)))
-  d₀₂ : Mor (Δ (suc (suc zero)))
+v₀ v₁ v₂ : Map (Δ (suc zero)) 𝕀
+v₀ = comp 𝕀₀ (! (Δ (suc zero)))
+v₁ = eval-pt
+v₂ = comp 𝕀₁ (! (Δ (suc zero)))
+
+-- the two constant vertices have constant object-action.
+v₀-const : (z : Ob (Δ (suc zero))) → ob-to-𝟚 v₀ z ≡ inl ⋆
+v₀-const z =
+    ap (pr₁ 𝕀-ob)
+       ( composeA 𝕀₀ (! (Δ (suc zero))) z
+       ∙ ap (comp 𝕀₀) (singletons-are-props (terminal 𝟏c) _ (idMap 𝟏c))
+       ∙ comp-id-r 𝕀₀ )
+  ∙ equiv-inv-rinv 𝕀-ob (inl ⋆)
+
+v₂-const : (z : Ob (Δ (suc zero))) → ob-to-𝟚 v₂ z ≡ inr ⋆
+v₂-const z =
+    ap (pr₁ 𝕀-ob)
+       ( composeA 𝕀₁ (! (Δ (suc zero))) z
+       ∙ ap (comp 𝕀₁) (singletons-are-props (terminal 𝟏c) _ (idMap 𝟏c))
+       ∙ comp-id-r 𝕀₁ )
+  ∙ equiv-inv-rinv 𝕀-ob (inr ⋆)
+
+-- the three pointwise orderings (all from 0 ≤ _ and _ ≤ 1).
+pw₀₁ : (z : Ob (Δ (suc zero))) → ob-to-𝟚 v₀ z ≤𝟚 ob-to-𝟚 v₁ z
+pw₀₁ z = transport (λ a → a ≤𝟚 ob-to-𝟚 v₁ z) (v₀-const z ⁻¹) ⋆
+
+pw₁₂ : (z : Ob (Δ (suc zero))) → ob-to-𝟚 v₁ z ≤𝟚 ob-to-𝟚 v₂ z
+pw₁₂ z = transport (λ b → ob-to-𝟚 v₁ z ≤𝟚 b) (v₂-const z ⁻¹)
+                   (any-≤𝟚-top (ob-to-𝟚 v₁ z))
+
+pw₀₂ : (z : Ob (Δ (suc zero))) → ob-to-𝟚 v₀ z ≤𝟚 ob-to-𝟚 v₂ z
+pw₀₂ z = transport (λ a → a ≤𝟚 ob-to-𝟚 v₂ z) (v₀-const z ⁻¹) ⋆
+
+-- the three edges as Homs of Δ² (Fun (Δ¹) 𝕀), via the posetal comparison.
+h₀₁ : Hom (Δ (suc (suc zero))) (map-to-ob (Δ (suc zero)) 𝕀 v₀) (map-to-ob (Δ (suc zero)) 𝕀 v₁)
+h₀₁ = pointwise-to-mor (Δ (suc zero)) v₀ v₁ pw₀₁
+
+h₁₂ : Hom (Δ (suc (suc zero))) (map-to-ob (Δ (suc zero)) 𝕀 v₁) (map-to-ob (Δ (suc zero)) 𝕀 v₂)
+h₁₂ = pointwise-to-mor (Δ (suc zero)) v₁ v₂ pw₁₂
+
+h₀₂ : Hom (Δ (suc (suc zero))) (map-to-ob (Δ (suc zero)) 𝕀 v₀) (map-to-ob (Δ (suc zero)) 𝕀 v₂)
+h₀₂ = pointwise-to-mor (Δ (suc zero)) v₀ v₂ pw₀₂
+
+-- The edges and their endpoint equations.  Kept `opaque` so downstream
+-- (the pentagon-heavy SegalGeom) treats them as atoms, exactly as the
+-- former postulates did — they are defined, just not unfolded.
+opaque
+  d₀₁ d₁₂ d₀₂ : Mor (Δ (suc (suc zero)))
+  d₀₁ = pr₁ h₀₁
+  d₁₂ = pr₁ h₁₂
+  d₀₂ = pr₁ h₀₂
+
   segal-comm : cod d₀₁ ≡ dom d₁₂
-  d₀₂-start  : dom d₀₂ ≡ dom d₀₁
-  d₀₂-end    : cod d₀₂ ≡ cod d₁₂
+  segal-comm = pr₂ (pr₂ h₀₁) ∙ (pr₁ (pr₂ h₁₂)) ⁻¹
+
+  d₀₂-start : dom d₀₂ ≡ dom d₀₁
+  d₀₂-start = pr₁ (pr₂ h₀₂) ∙ (pr₁ (pr₂ h₀₁)) ⁻¹
+
+  d₀₂-end : cod d₀₂ ≡ cod d₁₂
+  d₀₂-end = pr₂ (pr₂ h₀₂) ∙ (pr₂ (pr₂ h₁₂)) ⁻¹
 
 ------------------------------------------------------------------------
 -- Part 2: Composable pairs and the Segal axiom (Axiom 21)

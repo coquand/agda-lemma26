@@ -95,13 +95,17 @@ exp-is-equiv : is-equiv (exp-comparison A B X)       -- the exponential universa
 ### Segal axiom and simplices — `Simplices/Segal.agda`, `Simplices/SegalGeom.agda`
 
 ```agda
-d₀₁ d₁₂ d₀₂ : Mor (Δ 2)                             -- the three edges of Δ²
-segal-comm / d₀₂-start / d₀₂-end : …                -- they form a composable triangle
 segal-is-equiv : is-equiv (segal-comparison C)       -- the Segal / Rezk condition
 𝕀-hom-contr : is-contr (Hom 𝕀 𝕀₀ 𝕀₁)                -- 𝕀 has a unique nontrivial arrow
-segal-coface-01 : d₀₁ ≡ comp (face 1) eval-pt-inv    -- the d₀₁/d₁₂ edges are the
-segal-coface-12 : d₁₂ ≡ comp (lastedge 1) eval-pt-inv --   expected geometric cofaces
+segal-coface-01 : d₀₁ ≡ comp (face 1) eval-pt-inv    -- the abstract spine edges agree
+segal-coface-12 : d₁₂ ≡ comp (lastedge 1) eval-pt-inv --   with the geometric cofaces
 ```
+
+The three edges `d₀₁`/`d₁₂`/`d₀₂` of Δ² and their endpoint equations
+(`segal-comm`/`d₀₂-start`/`d₀₂-end`) are **not** postulated: they are *defined*
+in `Segal.agda` from the posetal structure of `𝕀` (each is the morphism in
+`Fun(Δ¹,𝕀) = Δ²` induced by a pointwise order between two vertices `Δ¹ → 𝕀`,
+via `pointwise-to-mor`). The genuine Segal input is just `segal-is-equiv`.
 
 There are **no** proof-debt postulates: in particular the base case
 `S-pushout zero = base-Sq1` holds directly, with no work-around postulate, and

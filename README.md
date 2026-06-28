@@ -41,19 +41,71 @@ Tested with **Agda 2.8.0** and **Agda 2.9.0** (a cold build of the full
 
 ## What is assumed
 
-The development is postulate-free except for its **admissible axioms**, which
-are the intended categorical/HoTT input, not gaps in the proof:
+The development is postulate-free except for its **admissible axioms**: the
+intended categorical/HoTT input of the Sattler–Wärn system, not gaps in the
+proof. They are the only `postulate`s in the live code, listed in full below
+(implicit arguments elided for readability).
 
-- **Foundations** — `Spartan.agda` (function extensionality, univalence),
-  `CatAxioms.agda` (the ambient wild category: composition, associativity,
-  units, coherence), `HigherCat.agda` (the interval `𝕀`), `Exponentials.agda`,
-  `Pullbacks.agda`.
-- **The interval / simplices** — `Interval.agda` (characterization of `𝕀`),
-  `Segal.agda` and `SegalGeom.agda` (the geometric **Segal axiom**, i.e.
-  `d₀₁`/`d₁₂`/`segal-is-equiv`/`segal-coface`).
+### HoTT foundations — `Foundations/Spartan.agda`
+
+```agda
+funext     : f ∼ g → f ≡ g                         -- function extensionality
+univalence : is-equiv (id-to-equiv A B)            -- the univalence axiom
+```
+
+### Ambient (wild) category — `Category/CatAxioms.agda`
+
+```agda
+Cat        : Type (𝓤₀ ⁺)                           -- the type of categories
+Map        : Cat → Cat → Type 𝓤₀                   -- functors / maps
+comp       : Map B C → Map A B → Map A C            -- composition (comp f g = f ∘ g)
+idMap      : (C : Cat) → Map C C
+comp-assoc : comp h (comp g f) ≡ comp (comp h g) f  -- associativity
+comp-id-l  : comp (idMap B) f ≡ f                   -- unit laws
+comp-id-r  : comp f (idMap A) ≡ f
+pentagonator : …                                    -- Mac Lane pentagon for the reassociator
+Id-triangle2 : …                                    -- Mac Lane triangle
+cat-univalence : (C : Cat) → is-contr (Equiv-from C) -- isomorphic objects are equal
+𝟏c         : Cat                                    -- terminal category
+terminal   : (C : Cat) → is-contr (Map C 𝟏c)
+```
+
+### Finite limits and exponentials — `Category/Pullbacks.agda`, `Category/Exponentials.agda`
+
+```agda
+pb          : Map B A → Map C A → Cat               -- pullback object
+pb-pr₁ / pb-pr₂ / pb-comm : …                       -- its projections + commuting square
+pb-is-equiv : is-equiv (pb-comparison f g X)        -- the pullback universal property
+
+Fun         : Cat → Cat → Cat                       -- exponential / functor category
+ev          : Map (Fun A B ×c A) B                  -- evaluation
+exp-is-equiv : is-equiv (exp-comparison A B X)       -- the exponential universal property
+```
+
+### The interval `𝕀` — `Category/HigherCat.agda`, `Interval/Interval.agda`
+
+```agda
+𝕀           : Cat                                   -- the interval (the "walking arrow")
+𝕀-ob        : Ob 𝕀 ≃ 𝟚                              -- it has exactly two objects
+𝕀-mor-order : pr₁ 𝕀-ob (dom g) ≤𝟚 pr₁ 𝕀-ob (cod g)  -- morphisms respect 0 ≤ 1
+𝕀-char-inverse : Monotone C → Map C 𝕀               -- 𝕀 classifies monotone maps:
+𝕀-char-rinv / 𝕀-char-linv : …                       --   Map C 𝕀 ≃ Monotone C
+```
+
+### Segal axiom and simplices — `Simplices/Segal.agda`, `Simplices/SegalGeom.agda`
+
+```agda
+d₀₁ d₁₂ d₀₂ : Mor (Δ 2)                             -- the three edges of Δ²
+segal-comm / d₀₂-start / d₀₂-end : …                -- they form a composable triangle
+segal-is-equiv : is-equiv (segal-comparison C)       -- the Segal / Rezk condition
+𝕀-hom-contr : is-contr (Hom 𝕀 𝕀₀ 𝕀₁)                -- 𝕀 has a unique nontrivial arrow
+segal-coface-01 : d₀₁ ≡ comp (face 1) eval-pt-inv    -- the d₀₁/d₁₂ edges are the
+segal-coface-12 : d₁₂ ≡ comp (lastedge 1) eval-pt-inv --   expected geometric cofaces
+```
 
 There are **no** proof-debt postulates: in particular the base case
-`S-pushout zero = base-Sq1` holds directly, with no work-around postulate.
+`S-pushout zero = base-Sq1` holds directly, with no work-around postulate, and
+everything in `Posetal/`, `Squares/`, and `Solvers/` is postulate-free.
 
 ## Layout
 

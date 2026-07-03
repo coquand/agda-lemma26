@@ -1,4 +1,4 @@
-# agda-lemma26
+# basic-higher-category
 
 An Agda formalization of **Lemma 26** in the pushout-square formulation:
 for every `n`, the gluing square
